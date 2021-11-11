@@ -6,10 +6,9 @@ import { AppService } from './app.service';
 @Module({
   imports: [
     ClientsModule.register([
-      {name: 'GREETING_SERVICE',transport: Transport.TCP,
+      {name: 'GREETING_SERVICE',transport: Transport.REDIS,
       options : {
-        host: '127.0.0.1',
-        port: 8080
+        url: 'redis://localhost:6379',
       }
     }
     ])

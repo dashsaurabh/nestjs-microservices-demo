@@ -1,5 +1,5 @@
-import { Controller, Get } from '@nestjs/common';
-import { MessagePattern } from '@nestjs/microservices';
+import { Controller } from '@nestjs/common';
+import { EventPattern, MessagePattern } from '@nestjs/microservices';
 
 @Controller()
 export class AppController {
@@ -11,6 +11,14 @@ export class AppController {
 
   @MessagePattern({cmd: 'greeting-async'})
   async getGreetingMessageAysnc(name: string): Promise<string> {
-    return `Hello ${name}`;
+    return `Hello ${name} Async`;
   }
+
+  @EventPattern('book-created')
+  async handleBookCreatedEvent(data: Record<string, unknown>) {
+    console.log(data);
+  }
+
 }
+
+
